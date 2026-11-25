@@ -519,9 +519,27 @@ export function validateConfig(config) {
   return errors;
 }
 
+
 const configErrors = validateConfig(botConfig);
+
+if (process.env.NODE_ENV === "production") {
+  // Log presence checks only; never print credential values.
+  logger.error("[config-diagnostic] Environment check", {
+    nodeEnv: process.env.NODE_ENV,
+    discordTokenPresent: Boolean(process.env.DISCORD_TOKEN || process.env.TOKEN),
+    clientIdPresent: Boolean(process.env.CLIENT_ID),
+    postgresUrlPresent: Boolean(process.env.POSTGRES_URL || process.env.DATABASE_URL),
+    postgresHostPresent: Boolean(process.env.POSTGRES_HOST),
+    postgresUserPresent: Boolean(process.env.POSTGRES_USER),
+    postgresPasswordPresent: Boolean(process.env.POSTGRES_PASSWORD),
+  });
+}
+
 if (configErrors.length > 0) {
-  logger.error("Bot configuration errors:", configErrors.join("\n"));
+  logger.error("Bot configuration errors:");
+  for (const error of configErrors) {
+    logger.error(`[config-diagnostic] ${error}`);
+  }
   if (process.env.NODE_ENV === "production") {
     process.exit(1);
   }
