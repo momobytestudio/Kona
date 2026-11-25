@@ -45,7 +45,7 @@ export const helpBugReportButton = {
             .setStyle(ButtonStyle.Link)
             .setURL('https://discord.gg/M9Zwnvrcbf');
 
-        const bugRow = new ActionRowBuilder().addComponents(serverButton);
+        const bugRow = new ActionRowBuilder().addComponents(GithubButton);
 
         const bugReportEmbed = createEmbed({
             title: '🐛 Bug Report',
