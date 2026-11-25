@@ -101,14 +101,14 @@ export async function createInitialHelpMenu(client) {
             },
             {
                 name: '\u200B',
-                value: `-# ${botName} is [open source](https://youtu.be/1jCZX8s3bJE?si=NPOYx-vxVE1I5vJK)`,
+                value: `-# ${botName} is [not open source](https://youtube.com/@momobytestudio)`,
                 inline: false,
             },
         ],
     });
 
     embed.setFooter({ 
-        text: "Made with ❤️" 
+        text: "Made by envy.xy" 
     });
     embed.setTimestamp();
 
@@ -119,7 +119,7 @@ export async function createInitialHelpMenu(client) {
 
     const supportButton = new ButtonBuilder()
         .setLabel("Support Server")
-        .setURL("https://discord.gg/QnWNz2dKCE")
+        .setURL("https://discord.gg/M9Zwnvrcbf")
         .setStyle(ButtonStyle.Link);
 
     const selectRow = createSelectMenu(
